@@ -1,0 +1,23 @@
+/* COLORS */
+$primary-color: rgb(128, 128, 128);
+$post-icon-color: rgba(252, 97, 8, 0.637);
+$post-border: rgba(128, 128, 128, 0.267);
+$button-color: rgb(252, 97, 8);
+
+@import 'components/Formview';
+@import 'components/Listview';
+
+
+.main-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .main-row {
+        height: 75%;
+        display: flex;
+        align-items: center;
+        box-shadow: 3px 3px 7px 7px rgba(0, 0, 0, 0.329);
+    }
+}

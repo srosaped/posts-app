@@ -1,0 +1,77 @@
+.list {
+    overflow-y: scroll;
+    height: 480px;
+    margin-top: 10px;
+    .posts {
+        border: 1px solid $post-border;
+        padding: 20px 10px;
+        .post-frame {
+            border-bottom: 1px solid $post-border;
+            .post-body { 
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 150px;
+                .post-title {
+                    font-size: 15px;
+                }
+                .post-text {
+                    font-size: 12px;
+                }
+                .svg-inline--fa {
+                    color: $post-icon-color;
+                }
+                .post-edition {
+                    width: 100%;
+                    display: flex;
+                    justify-content: end;
+                    .svg-inline--fa {
+                        padding: 7px;
+                        color: $button-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    h1 {
+        padding-right: 20px;
+    }
+    button {
+        padding: 10px;
+        height: 42px;
+        width: 42px;
+    }
+}
+
+.btn-primary {
+    background-color: $button-color;
+    border: none;
+    padding: 10px;
+
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: $post-border;
+}
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $post-icon-color;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $post-border;
+  }
