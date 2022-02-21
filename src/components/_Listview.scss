@@ -1,23 +1,19 @@
+.posts-container {
+    padding: 0 0px;
+}
+
+.post-padding {
+    padding-top: 58px;
+}
+
 .list {
-    overflow-y: scroll;
-    height: 480px;
-    margin-top: 10px;
+    height: 100%;
+    padding: 0;
+    margin-top: 2px;
+    position: relative;
     .posts {
-        border: 1px solid $post-border;
-        padding: 20px 10px;
         .post-frame {
-            border-bottom: 1px solid $post-border;
             .post-body { 
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                height: 150px;
-                .post-title {
-                    font-size: 15px;
-                }
-                .post-text {
-                    font-size: 12px;
-                }
                 .svg-inline--fa {
                     color: $post-icon-color;
                 }
@@ -25,6 +21,7 @@
                     width: 100%;
                     display: flex;
                     justify-content: end;
+                    padding: 2px;
                     .svg-inline--fa {
                         padding: 7px;
                         color: $button-color;
@@ -34,27 +31,8 @@
         }
     }
 }
+  
 
-.title {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    h1 {
-        padding-right: 20px;
-    }
-    button {
-        padding: 10px;
-        height: 42px;
-        width: 42px;
-    }
-}
-
-.btn-primary {
-    background-color: $button-color;
-    border: none;
-    padding: 10px;
-
-}
 
 /* width */
 ::-webkit-scrollbar {

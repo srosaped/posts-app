@@ -1,3 +1,16 @@
+/* COLORS */
+$primary-color: rgb(128, 128, 128);
+$post-icon-color: rgba(252, 97, 8, 0.637);
+$post-border: rgba(128, 128, 128, 0.267);
+$button-color: rgb(252, 97, 8);
+$background: rgb(33,37,41);
+
+@import 'components/Formview';
+@import 'components/Listview';
+
+
+
+
 body {
   margin: 0;
   font-family: 
@@ -5,6 +18,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $background;
 }
 
 code {

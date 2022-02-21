@@ -3,12 +3,15 @@ $primary-color: rgb(128, 128, 128);
 $post-icon-color: rgba(252, 97, 8, 0.637);
 $post-border: rgba(128, 128, 128, 0.267);
 $button-color: rgb(252, 97, 8);
+$background: rgb(33,37,41);
 
 @import 'components/Formview';
 @import 'components/Listview';
 
 
+
 .main-container {
+    background-color: $background;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -16,8 +19,28 @@ $button-color: rgb(252, 97, 8);
     justify-content: center;
     .main-row {
         height: 75%;
+        width: 100%;
+        background-color: $background;
         display: flex;
         align-items: center;
         box-shadow: 3px 3px 7px 7px rgba(0, 0, 0, 0.329);
     }
+}
+
+.btn-primary {
+    background-color: $button-color;
+    border: none;
+    padding: 10px;
+
+}
+
+.header-btn {
+    width: 42px;
+    height: 42px;
+}
+
+.header {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
 }
