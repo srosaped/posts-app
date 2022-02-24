@@ -8,13 +8,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-
 const validationPost = yup.object().shape({
     priority: yup.string().required("Choose one priority level!"),
     title: yup.string().required("The title is mandatory!").max(40, "The title must be 40 chars or less!"),
     body: yup.string().required("The message is mandatory!").max(500, "The message must be 150 chars or less!")
 });
-
 
 const Addpost: React.FC = () => {
 
@@ -35,7 +33,18 @@ const Addpost: React.FC = () => {
             console.log(error);
         })
 
-    
+    const priorityDots = () => {
+        if (post.priority === "High") {
+            return <div className="red"></div>  
+        }
+        if (post.priority === "Medium") {
+            return <div className="yellow"></div>  
+        }
+        if {post.priority === "Low") {
+            return <div className="green"></div>  
+        }
+    }    
+
     return (
 
         <Form className='form' onSubmit={handleSubmit(addPost)}>
@@ -77,7 +86,7 @@ const Addpost: React.FC = () => {
                 <p className="error-message">{errors.body?.message}</p>
             </Form.Group>
             <Button variant="primary" type="submit">
-                Submit
+                Create
             </Button>
         </Form>
     );

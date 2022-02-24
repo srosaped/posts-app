@@ -25,6 +25,45 @@
   padding-top: 58px;
 }
 
+.priority-date {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  font-weight: normal;
+  width: 100%;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.priority-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.priority {
+  color: blue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .list {
   height: 100%;
   padding: 0;
@@ -50,6 +89,10 @@
 .list .posts .post-frame .post-body .post-edition .svg-inline--fa {
   padding: 7px;
   color: #fc6108;
+}
+
+.red {
+  color: red;
 }
 
 /* width */

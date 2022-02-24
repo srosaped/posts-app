@@ -5,10 +5,13 @@ import { Container, Card } from 'react-bootstrap';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCommentDots, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import Header from './Header';
 import { Post } from '../models/post.model';
+
+import moment from 'moment';
+
 
 const Listview: React.FC = () => {
 
@@ -17,13 +20,12 @@ const Listview: React.FC = () => {
     priority: '',
     title: '',
     body: '',
-    date: (new Date).toString()
+    date: (new Date).toLocaleString()
   }]);
 
   useEffect(() => {
     axios.get('http://localhost:3000/posts')
       .then(res => {
-        console.log(res)
         setPosts(res.data)
       })
       .catch(err => {
@@ -31,25 +33,55 @@ const Listview: React.FC = () => {
       })
   }, []);
 
+
   const deletePost = (id: any) => {
     axios.delete(`http://localhost:3000/posts/${id}`)
 
     setPosts(posts.filter(post => post.id !== id))
   }
 
+  const priority = document.getElementsByClassName('priority');
+
+    if (priority === "High") {
+        return <div className="red"></div>  
+    }
+    if (priority === "Medium") {
+        return <div className="yellow"></div>  
+    }
+    if (priority === "Low") {
+        return <div className="green"></div>  
+    }
+
+
   return (
+    
     <>
       <Container className="posts-container">
         <div className="list">
           <div className="posts">  
               <Header/>
             {
+              
               posts.map((post: Post ) => (
 
                 <div key={post.id} className="post-frame">
                   <div className='post-body'>
                     <Card className="mb-3">
-                      <CardHeader><FontAwesomeIcon icon={faCommentDots} /> {post.title}</CardHeader>
+                      <CardHeader>
+                        <div className='priority-date'>
+                          <div className='priority-wrapper'>
+                            <div className='priority'>
+                              {post.priority}
+                            </div>
+                            <div className='date'>
+                              {moment().format('L')}
+                            </div>
+                          </div>
+                        </div>
+                        <div className='title'>
+                          {post.title} 
+                        </div>
+                      </CardHeader>
                       <Card.Body>
                           <Card.Text>
                             {post.body}
@@ -57,7 +89,7 @@ const Listview: React.FC = () => {
                       </Card.Body>
                       <Card.Body className="post-edition">
                           <Card.Link  onClick={() => deletePost(post.id)}><FontAwesomeIcon icon={faTrashCan} /></Card.Link>
-                          <Link to="/editpost">
+                          <Link to={{ pathname: `/editpost/${post.id}` }}>
                             <FontAwesomeIcon icon={faPen} />
                           </Link>
                       </Card.Body>
@@ -72,7 +104,5 @@ const Listview: React.FC = () => {
     </>
   );
 }
-
-
 
 export default Listview;

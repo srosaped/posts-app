@@ -25,7 +25,7 @@ const App: React.FC = () => {
             <Col sm={7} className="p-3">
                 <Routes>
                     <Route path="/addpost" element={<Addpost />}/>
-                    <Route path="/editpost" element={<Editpost />}/>
+                    <Route path="/editpost/:id" element={<Editpost />}/>
                 </Routes>
             </Col>
           </Row>
