@@ -26,7 +26,8 @@ const Listview: React.FC = () => {
   useEffect(() => {
     axios.get('http://localhost:3000/posts')
       .then(res => {
-        setPosts(res.data)
+        setPosts(res.data);
+        
       })
       .catch(err => {
         console.log(err)
@@ -40,10 +41,6 @@ const Listview: React.FC = () => {
 
     setPosts(posts.filter(post => post.id !== id))
 
-  }
-
-  const refreshPage = () => { 
-    window.location.reload(); 
   }
 
   return (

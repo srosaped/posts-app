@@ -35,7 +35,7 @@ const Editpost: React.FC = () => {
     .then((response) => {
         console.log(response);
         history(0);
-       
+        refreshPage();
     })
     .catch((error) => {
         console.log(error);
@@ -51,6 +51,10 @@ const Editpost: React.FC = () => {
         })
         
     }, []);
+
+    const refreshPage = () => { 
+        window.location.reload(); 
+    }
     
         
     return (
