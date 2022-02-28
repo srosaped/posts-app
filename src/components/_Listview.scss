@@ -26,9 +26,7 @@
     width: 100%;
 }
 .priority {
-    color: blue;
     display: flex;
-    
 }
 
 .list {
@@ -39,6 +37,10 @@
     .posts {
         .post-frame {
             .post-body { 
+                .card-header {
+                    background-color: #212529ad;
+                    color: white;
+                }
                 .svg-inline--fa {
                     color: $post-icon-color;
                 }
@@ -58,7 +60,25 @@
 }
 
 .red {
-    color:red;
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+}
+.yellow {
+    height: 20px;
+    width: 20px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: inline-block;
+}
+.green {
+    height: 20px;
+    width: 20px;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
 }
   
 

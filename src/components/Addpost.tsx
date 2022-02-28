@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 import axios from 'axios';
@@ -32,18 +32,11 @@ const Addpost: React.FC = () => {
         .catch((error) => {
             console.log(error);
         })
+    
+    const defaultDate = new Date();
 
-    const priorityDots = () => {
-        if (post.priority === "High") {
-            return <div className="red"></div>  
-        }
-        if (post.priority === "Medium") {
-            return <div className="yellow"></div>  
-        }
-        if {post.priority === "Low") {
-            return <div className="green"></div>  
-        }
-    }    
+    const [date] = useState(defaultDate);
+
 
     return (
 
@@ -84,6 +77,13 @@ const Addpost: React.FC = () => {
                 {...register("body")}
                 />
                 <p className="error-message">{errors.body?.message}</p>
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                type="hidden"
+                value={date.toLocaleDateString('pt-PT')}
+                {...register("date")}
+                />
             </Form.Group>
             <Button variant="primary" type="submit">
                 Create

@@ -10,7 +10,7 @@ import CardHeader from 'react-bootstrap/esm/CardHeader';
 import Header from './Header';
 import { Post } from '../models/post.model';
 
-import moment from 'moment';
+
 
 
 const Listview: React.FC = () => {
@@ -20,7 +20,7 @@ const Listview: React.FC = () => {
     priority: '',
     title: '',
     body: '',
-    date: (new Date).toLocaleString()
+    date: ''
   }]);
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const Listview: React.FC = () => {
       .catch(err => {
         console.log(err)
       })
+
   }, []);
 
 
@@ -38,31 +39,23 @@ const Listview: React.FC = () => {
     axios.delete(`http://localhost:3000/posts/${id}`)
 
     setPosts(posts.filter(post => post.id !== id))
+
   }
 
-  const priority = document.getElementsByClassName('priority');
-
-    if (priority === "High") {
-        return <div className="red"></div>  
-    }
-    if (priority === "Medium") {
-        return <div className="yellow"></div>  
-    }
-    if (priority === "Low") {
-        return <div className="green"></div>  
-    }
-
+  const refreshPage = () => { 
+    window.location.reload(); 
+  }
 
   return (
-    
+
     <>
       <Container className="posts-container">
         <div className="list">
-          <div className="posts">  
-              <Header/>
+          <div className="posts">
+            <Header />
+
             {
-              
-              posts.map((post: Post ) => (
+              posts.map((post: Post) => (
 
                 <div key={post.id} className="post-frame">
                   <div className='post-body'>
@@ -70,33 +63,45 @@ const Listview: React.FC = () => {
                       <CardHeader>
                         <div className='priority-date'>
                           <div className='priority-wrapper'>
-                            <div className='priority'>
-                              {post.priority}
+                            <div key={post.id} className='priority'>
+                              <div>
+                                {(() => {
+                                  switch (post.priority) {
+                                    case 'high':
+                                      return <div className="red"></div>
+                                    case 'medium':
+                                      return <div className="yellow"></div>
+                                    case 'low':
+                                      return <div className="green"></div>
+                                  }
+                                })()}
+                              </div>
                             </div>
                             <div className='date'>
-                              {moment().format('L')}
+                              {post.date}
                             </div>
                           </div>
                         </div>
                         <div className='title'>
-                          {post.title} 
+                          {post.title}
                         </div>
                       </CardHeader>
                       <Card.Body>
-                          <Card.Text>
-                            {post.body}
-                          </Card.Text>
+                        <Card.Text>
+                          {post.body}
+                        </Card.Text>
                       </Card.Body>
                       <Card.Body className="post-edition">
-                          <Card.Link  onClick={() => deletePost(post.id)}><FontAwesomeIcon icon={faTrashCan} /></Card.Link>
-                          <Link to={{ pathname: `/editpost/${post.id}` }}>
-                            <FontAwesomeIcon icon={faPen} />
-                          </Link>
+                        <Card.Link onClick={() => deletePost(post.id)}><FontAwesomeIcon icon={faTrashCan} /></Card.Link>
+                        <Link to={{ pathname: `/editpost/${post.id}` }}>
+                          <FontAwesomeIcon icon={faPen} />
+                        </Link>
                       </Card.Body>
                     </Card>
                   </div>
                 </div>
               ))
+
             }
           </div>
         </div>

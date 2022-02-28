@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 import axios from 'axios';
@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 const validationPost = yup.object().shape({
@@ -17,31 +17,41 @@ const validationPost = yup.object().shape({
 
 
 const Editpost: React.FC = () => {
-
-    const { id } = useParams();
-
-    let history : any = useNavigate();
     
-    const editPost = (data: any) => axios.put(`http://localhost:3000/posts/${id}`, data)
-        .then((response) => {
-            console.log(response);
-            history(0);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-
+    const defaultDate = new Date();
+    const [date] = useState(defaultDate);
+    
+    const { id } = useParams();
+    
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(validationPost)
     });
+
+    const apiUrl ='http://localhost:3000/posts/';
+    
+    const history = useNavigate();
+
+    const editPost = (data: any) => axios.put(`${apiUrl}${id}`, data)
+    .then((response) => {
+        console.log(response);
         
+       
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+    
     useEffect(() => {
         axios.get(`http://localhost:3000/posts/${id}`)
-            .then((response) => {
-                reset(response.data)
-            })
+        .then((response) => {
+            const data = response.data;
+            reset(data)
+            console.log(data)
+            
+        })
+        
+    }, []);
     
-        }, []);
         
     return (
 
@@ -65,10 +75,9 @@ const Editpost: React.FC = () => {
             <Form.Group className="mb-3">
                 <Form.Label>Title</Form.Label>
                 <Form.Control 
-                    type="text" 
+                    type="text"     
                     placeholder="Title" 
                     {...register("title")}
-                    
                 />
                 <p className="error-message">{errors.title?.message}</p>
             </Form.Group>
@@ -76,13 +85,23 @@ const Editpost: React.FC = () => {
             <Form.Label>Message</Form.Label>
                 <Form.Control
                 type="text"
-                as="textarea" 
+                as="textarea"
                 rows={3} placeholder="Message" 
                 {...register("body")}
                 />
                 <p className="error-message">{errors.body?.message}</p>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Form.Group>
+                <Form.Control
+                type="hidden"
+                value={date.toLocaleDateString('pt-PT')}
+                {...register("date")}
+                />
+            </Form.Group>
+            <Button 
+                variant="primary" 
+                type="submit"
+            >
                 Save
             </Button>
         </Form>

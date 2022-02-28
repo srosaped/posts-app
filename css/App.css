@@ -58,7 +58,6 @@
 }
 
 .priority {
-  color: blue;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -69,6 +68,11 @@
   padding: 0;
   margin-top: 2px;
   position: relative;
+}
+
+.list .posts .post-frame .post-body .card-header {
+  background-color: #212529ad;
+  color: white;
 }
 
 .list .posts .post-frame .post-body .svg-inline--fa {
@@ -92,7 +96,27 @@
 }
 
 .red {
-  color: red;
+  height: 20px;
+  width: 20px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.yellow {
+  height: 20px;
+  width: 20px;
+  background-color: yellow;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.green {
+  height: 20px;
+  width: 20px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 /* width */
