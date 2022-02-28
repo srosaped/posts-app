@@ -34,7 +34,7 @@ const Editpost: React.FC = () => {
     const editPost = (data: any) => axios.put(`${apiUrl}${id}`, data)
     .then((response) => {
         console.log(response);
-        
+        history(0);
        
     })
     .catch((error) => {
