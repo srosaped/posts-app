@@ -29,12 +29,12 @@ const Editpost: React.FC = () => {
 
     const apiUrl ='http://localhost:3000/posts/';
     
-    const history = useNavigate();
+    let history = useNavigate();
 
     const editPost = (data: any) => axios.put(`${apiUrl}${id}`, data)
     .then((response) => {
         console.log(response);
-        history(0);
+        history("/");
         refreshPage();
     })
     .catch((error) => {
@@ -63,7 +63,8 @@ const Editpost: React.FC = () => {
             <h1>Edit Post</h1>
             <Form.Group className="mb-3">
                 <Form.Label>Priority</Form.Label>
-                <Form.Control 
+                <Form.Control
+                    id="priority" 
                     as="select" 
                     type='text'
                     aria-label="Choose priority" 
@@ -105,6 +106,7 @@ const Editpost: React.FC = () => {
             <Button 
                 variant="primary" 
                 type="submit"
+                title="editButton"
             >
                 Save
             </Button>

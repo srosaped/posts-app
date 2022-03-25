@@ -7,8 +7,8 @@ import { Container, Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import CardHeader from 'react-bootstrap/esm/CardHeader';
-import Header from './Header';
-import { Post } from '../models/post.model';
+import Header from '../Header/Header';
+import { Post } from '../../models/post.model';
 
 
 
@@ -27,7 +27,6 @@ const Listview: React.FC = () => {
     axios.get('http://localhost:3000/posts')
       .then(res => {
         setPosts(res.data);
-        
       })
       .catch(err => {
         console.log(err)
@@ -53,7 +52,6 @@ const Listview: React.FC = () => {
 
             {
               posts.map((post: Post) => (
-
                 <div key={post.id} className="post-frame">
                   <div className='post-body'>
                     <Card className="mb-3">
